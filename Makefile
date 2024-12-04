@@ -24,3 +24,7 @@ bonus:		$(OBJS) $(OBJS_BONUS)
 			$(LIBC)	$(NAME) $(OBJS_BONUS)
 
 .PHONY:		all clean fclean re bonus
+
+
+
+#NON FONCTIONNEL A CORRIGER !!!!!
