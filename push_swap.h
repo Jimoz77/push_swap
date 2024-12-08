@@ -2,21 +2,33 @@
 # define PUSH_SWAP_H
 
 # include <stdio.h>
-# include <stdint.h>
-# include <stddef.h>
-# include <string.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdbool.h>
+# include <limits.h>
+
+
+//une fois tout les utils needed suppr libft
+//ajouter ft_printf a la place de printf
+
 
 typedef struct s_list
 {
 	int			content;
+	int			index;
+	int			push_cost;
+	bool		above_median;
+	bool		cheapest;
+
 	struct s_list	*next;
-}				t_list;
+	struct s_list	*prev;
+	
+}	t_list;
 
 
 t_list	*ft_lstnew(int content);
 int		ft_atoi(const char *str);
+int		ft_lstsize(t_list *lst);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	sa(t_list **lst);
@@ -30,8 +42,8 @@ void	rr(t_list **lst_a, t_list **lst_b);
 void	rra(t_list **lst);
 void	rrb(t_list **lst);
 void	rrr(t_list **lst_a, t_list **lst_b);
-
-
+char	**ft_split(char const *s, char c);
+void	init_stack_a(t_list **lst,char  **argv);
 
 
 

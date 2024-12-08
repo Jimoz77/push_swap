@@ -6,7 +6,7 @@
 /*   By: jimpa <jimpa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 17:46:53 by jimpa             #+#    #+#             */
-/*   Updated: 2024/12/04 18:53:59 by jimpa            ###   ########.fr       */
+/*   Updated: 2024/12/05 15:05:18 by jimpa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,36 @@
 
 int	main(int argc, char **argv)
 {
-	int		i;
 	t_list	*list_a;
 	t_list	*list_b;
 
 	list_a = NULL;
 	list_b = NULL;
-	i = 1;
-	while (i < argc)
+	if (argc == 1 || (argc == 2 && !argv[1][0]))
 	{
-		ft_lstadd_back(&list_a, ft_lstnew(ft_atoi(argv[i])));
-		i++;
+		return (1);
 	}
-	pb(&list_a, &list_b);
-	pb(&list_a, &list_b);
-	pb(&list_a, &list_b);
-	pb(&list_a, &list_b);
-	pa(&list_a, &list_b);
-	rrr(&list_b, &list_a);
+	else if (argc == 2)
+	{
+		argv = ft_split(argv[1],' ');
+	}
+	init_stack_a(&list_a, argv);
+/* 	if (!stack_sorted(list_a)) 					//fonction a def !!!!
+	{
+		if (ft_lstsize(list_a) == 2)
+		{
+			sa(&list_a);						//atention fonction sa prend un bool dans l exemple
+		}
+		else if (ft_lstsize(&list_a) == 3)
+		{
+			sort_three(&list_a);				//fonction de sort a 3 elem a def !!!!
+		}
+		else
+			sort_stacks(&list_a, &list_b);		//fonction a def represente tout le mecanisme de turk algo
+	}
+	free_stack(&list_a);
+	return (0);
+ */
 	t_list *temp_a = list_a;
 	t_list *temp_b = list_b;
 	while (temp_a != NULL || temp_b != NULL)
@@ -48,5 +60,5 @@ int	main(int argc, char **argv)
 		}
 		printf("\n");
 	}
-	return (0);
+	return (0); 
 }
