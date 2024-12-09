@@ -27,7 +27,7 @@ typedef struct s_list
 
 
 t_list	*ft_lstnew(int content);
-int		ft_atoi(const char *str);
+long	ft_atol(const char *str);
 int		ft_lstsize(t_list *lst);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_lstadd_back(t_list **lst, t_list *new);
@@ -44,6 +44,8 @@ void	rrb(t_list **lst);
 void	rrr(t_list **lst_a, t_list **lst_b);
 char	**ft_split(char const *s, char c);
 void	init_stack_a(t_list **lst,char  **argv);
+bool	stack_sorted(t_list *lst);
+void	sort_three(t_list **lst);
 
 
 
