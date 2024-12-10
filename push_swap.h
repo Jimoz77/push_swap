@@ -14,12 +14,12 @@
 
 typedef struct s_list
 {
-	int			content;
-	int			index;
-	int			push_cost;
-	bool		above_median;
-	bool		cheapest;
-
+	int				content;
+	int				index;
+	int				push_cost;
+	bool			above_median;
+	bool			cheapest;
+	struct s_list	*target_node;
 	struct s_list	*next;
 	struct s_list	*prev;
 	
@@ -46,6 +46,10 @@ char	**ft_split(char const *s, char c);
 void	init_stack_a(t_list **lst,char  **argv);
 bool	stack_sorted(t_list *lst);
 void	sort_three(t_list **lst);
+void	set_index(t_list *lst);
+void	rotate_both(t_list **a, t_list **b, t_list *cheapest_node);
+void	rev_rotate_both(t_list **a, t_list **b, t_list *cheapest_node);
+void	sort_stacks(t_list **a, t_list **b);
 
 
 

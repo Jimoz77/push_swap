@@ -6,7 +6,7 @@
 /*   By: jimpa <jimpa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 17:56:54 by jimpa             #+#    #+#             */
-/*   Updated: 2024/12/09 17:39:55 by jimpa            ###   ########.fr       */
+/*   Updated: 2024/12/10 14:05:44 by jimpa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,221 @@ t_list	*find_max(t_list *lst)
 		lst = lst->next;
 	}
 	return (max_node);
+}
+
+t_list	*find_min(t_list *lst)
+{
+	t_list	*min_node;
+	int		min_val;
+
+	min_val = INT_MAX;
+	min_node = NULL;
+	while (lst)
+	{
+		if (lst->content < min_val)
+		{
+			min_val = lst->content;
+			min_node = lst;
+		}
+		lst = lst->next;
+	}
+	return (min_node);
+}
+
+void	prep_for_push(t_list **lst, t_list *top_node, char lst_name)
+{
+	while (*lst != top_node)
+	{
+		if (lst_name == 'a')
+		{
+			if (top_node->above_median)
+				ra(lst);
+			else
+				rra(lst);
+		}
+		else if (lst_name == 'b')
+		{
+			if (top_node->above_median)
+				rb(lst);
+			else
+				rrb(lst);
+		}		
+	}
+}
+
+t_list	*get_cheapest(t_list *a)
+{
+	while (a)
+	{
+		if (a->cheapest == true)
+		{
+			return (a);
+		}
+		a = a->next;
+	}
+	return (NULL);
+}
+
+void	move_a_to_b(t_list **a, t_list **b)
+{
+	t_list	*cheapest_node;
+
+	cheapest_node = get_cheapest(*a);
+	if (cheapest_node->above_median && cheapest_node->target_node->above_median)
+		rotate_both(a, b, cheapest_node);
+	else if (!(cheapest_node->above_median) && !(cheapest_node->target_node->above_median))
+		rev_rotate_both(a, b, cheapest_node);
+	prep_for_push(a, cheapest_node, 'a');
+	prep_for_push(b, cheapest_node->target_node, 'b');
+	pb(a, b);
+}
+
+void	move_b_to_a(t_list **a, t_list **b)
+{
+	prep_for_push(a, (*b)->target_node, 'a');
+	pa(a, b);
+}
+
+void	set_cheapest(t_list *lst)
+{
+	long	cheapest_value;
+	t_list	*cheapest_node;
+
+	if (!lst)
+		return ;
+	cheapest_value = LONG_MAX;
+	while (lst)
+	{
+		if (lst->push_cost < cheapest_value)
+		{
+			cheapest_value = lst->push_cost;
+			cheapest_node = lst;
+		}
+		lst = lst->next;
+	}
+	cheapest_node->cheapest = true;
+}
+
+void	cost_analysis_a(t_list *a, t_list *b)
+{
+	int	len_a;
+	int	len_b;
+
+	len_a = ft_lstsize(a);
+	len_b = ft_lstsize(b);
+	while (a)
+	{
+		a->push_cost = a->index;
+		if (!(a->above_median))
+			a->push_cost = len_a - (a->index);
+		if (a->target_node->above_median)
+			a->push_cost += a->target_node->index;
+		else
+			a->push_cost += len_b - (a->target_node->index);
+		a = a->next;
+	}
+	
+}
+
+void	set_target_a(t_list *a, t_list *b)
+{
+	t_list	*temp_b;
+	t_list	*t_node;
+	long	best_t;
+
+	while (a)
+	{
+		best_t = LONG_MIN;
+		temp_b = b;
+		while (temp_b)
+		{
+			if (temp_b->content < a->content && temp_b->content > best_t)
+			{
+				best_t = temp_b->content;
+				t_node = temp_b;
+			}
+			temp_b = temp_b->next;
+		}
+		if (best_t == LONG_MIN)
+			a->target_node = find_max(b);
+		else
+			a->target_node =t_node;
+		a = a->next;
+	}
+}
+
+void	set_target_b(t_list *a, t_list *b)
+{
+	t_list	*temp_a;
+	t_list	*t_node;
+	long	best_t;
+
+	while (a)
+	{
+		best_t = LONG_MAX;
+		temp_a = a;
+		while (temp_a)
+		{
+			if (temp_a->content > b->content && temp_a->content < best_t)
+			{
+				best_t = temp_a->content;
+				t_node = temp_a;
+			}
+			temp_a = temp_a->next;
+		}
+		if (best_t == LONG_MAX)
+			b->target_node = find_min(a);
+		else
+			b->target_node =t_node;
+		b = b->next;
+	}
+}
+
+void	set_index(t_list *lst)
+{
+	int i;
+	int median;
+
+	i = 0;
+	median = ft_lstsize(lst) / 2;
+	while (lst)
+	{
+		lst->index = i;
+		if(i <= median)
+			lst->above_median = true;
+		else
+			lst->above_median = false;
+		lst = lst->next;
+		i++;
+	}
+	
+}
+
+void	init_nodes_a(t_list *a, t_list *b)
+{
+	set_index(a);
+	set_index(b);
+	set_target_a(a, b);
+	cost_analysis_a(a, b);
+	set_cheapest(a);
+}
+
+void	init_nodes_b(t_list *a, t_list *b)
+{
+	set_index(a);
+	set_index(b);
+	set_target_b(a, b);
+}
+
+void	min_on_top(t_list **a)
+{
+	while ((*a)->content != find_min(*a)->content)
+	{
+		if (find_min(*a)->above_median)
+			ra(a);
+		else
+			rra(a);
+	}
 }
 
 void sort_three(t_list **lst)
@@ -222,11 +437,18 @@ void	sort_stacks(t_list **a, t_list **b)
 		pb(a, b);
 	while (len_a-- > 3 && !stack_sorted(*a))
 	{
-		// a suivre dans la suite de la video : 34:26
+		init_nodes_a(*a, *b);
+		move_a_to_b(a, b);
 	}
-		
+	sort_three(a);
+	while(*b)
+	{
+		init_nodes_b(*a, *b);
+		move_b_to_a(a, b);
+	}
+	set_index(*a);
+	min_on_top(a);					// A DEFF !!!
 }
-
 
 // pour split :
 

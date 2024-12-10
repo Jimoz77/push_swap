@@ -1,21 +1,22 @@
 #include "push_swap.h"
 
+void	rev_rotate_both(t_list **a, t_list **b, t_list *cheapest_node)
+{
+	while (*b != cheapest_node->target_node && *a != cheapest_node)
+		rrr(a,b);
+	set_index(*a);
+	set_index(*b);
+	
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+void	rotate_both(t_list **a, t_list **b, t_list *cheapest_node)
+{
+	while (*b != cheapest_node->target_node && *a != cheapest_node)
+		rr(a,b);
+	set_index(*a);
+	set_index(*b);
+	
+}
 
 // FONCTION DE MOUVEMENT DE LISTE //
 

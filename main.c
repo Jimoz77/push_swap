@@ -6,7 +6,7 @@
 /*   By: jimpa <jimpa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 17:46:53 by jimpa             #+#    #+#             */
-/*   Updated: 2024/12/09 17:28:39 by jimpa            ###   ########.fr       */
+/*   Updated: 2024/12/10 13:57:07 by jimpa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,28 +20,19 @@ int	main(int argc, char **argv)
 	list_a = NULL;
 	list_b = NULL;
 	if (argc == 1 || (argc == 2 && !argv[1][0]))
-	{
 		return (1);
-	}
 	else if (argc == 2)
-	{
 		argv = ft_split(argv[1],' ');
-	}
 	init_stack_a(&list_a, argv);
 	if (!stack_sorted(list_a)) 				
 	{
 		if (ft_lstsize(list_a) == 2)
-		{
-			sa(&list_a);						//atention fonction sa prend un bool dans l exemple
-		}
+			sa(&list_a);
 		else if (ft_lstsize(list_a) == 3)
-		{
-			sort_three(&list_a);				//fonction de sort a 3 elem a def !!!!
-		}
-		/* else
-			sort_stacks(&list_a, &list_b); */		//fonction a def represente tout le mecanisme de turk algo
+			sort_three(&list_a);
+		else
+			sort_stacks(&list_a, &list_b);		//represente tout le mecanisme de turk algo
 	}
-
 	t_list *temp_a = list_a;
 	t_list *temp_b = list_b;
 	while (temp_a != NULL || temp_b != NULL)
