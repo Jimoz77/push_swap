@@ -1,29 +1,25 @@
-FILE	=	main.c instructions.c utils.c
+FILE	=	./instructions_folder/*.c ./utils_folder/*.c ./ft_printf/*.c ./ft_printf/libft/*.c
 
 OBJS	=	$(FILE:.c=.o)
 
 CC		=	gcc
 FLAGS	=	-Wall -Wextra -Werror -I.
-LIBC	=	ar rcs
 NAME	=	push_swap
 
 all:		$(NAME)
 
 $(NAME):	$(OBJS)
-			${LIBC} $(NAME) $(OBJS)
+			$(CC) $(FLAGS) $(FILE) -o $(NAME)
 
 clean:		
-			rm -f $(OBJS) $(OBJS_BONUS)
+			rm -f $(OBJS)
 
 fclean:		clean
 			rm -f $(NAME)
 
 re:			fclean all
 
-bonus:		$(OBJS) $(OBJS_BONUS)
-			$(LIBC)	$(NAME) $(OBJS_BONUS)
-
-.PHONY:		all clean fclean re bonus
+.PHONY:		all clean fclean re
 
 
 
