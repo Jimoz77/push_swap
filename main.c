@@ -6,7 +6,7 @@
 /*   By: jimpa <jimpa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 17:46:53 by jimpa             #+#    #+#             */
-/*   Updated: 2024/12/10 13:57:07 by jimpa            ###   ########.fr       */
+/*   Updated: 2024/12/10 15:34:10 by jimpa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(int argc, char **argv)
 		else
 			sort_stacks(&list_a, &list_b);		//represente tout le mecanisme de turk algo
 	}
-	t_list *temp_a = list_a;
+	/* t_list *temp_a = list_a;
 	t_list *temp_b = list_b;
 	while (temp_a != NULL || temp_b != NULL)
 	{
@@ -48,7 +48,7 @@ int	main(int argc, char **argv)
 			temp_b = temp_b->next;
 		}
 		printf("\n");
-	}
-	printf("sorted = %d\n", stack_sorted(list_a));
+	} */
+	//printf("sorted = %d\n", stack_sorted(list_a));
 	return (0); 
 }

@@ -6,7 +6,7 @@
 /*   By: jimpa <jimpa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 17:56:54 by jimpa             #+#    #+#             */
-/*   Updated: 2024/12/10 14:05:44 by jimpa            ###   ########.fr       */
+/*   Updated: 2024/12/10 15:21:45 by jimpa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,7 +178,7 @@ void	set_target_b(t_list *a, t_list *b)
 	t_list	*t_node;
 	long	best_t;
 
-	while (a)
+	while (b)
 	{
 		best_t = LONG_MAX;
 		temp_a = a;
