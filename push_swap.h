@@ -6,7 +6,7 @@
 /*   By: jimpa <jimpa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 18:03:44 by jimpa             #+#    #+#             */
-/*   Updated: 2024/12/12 19:39:58 by jimpa            ###   ########.fr       */
+/*   Updated: 2024/12/16 12:16:25 by jimpa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,17 @@ long	ft_atol(const char *str);
 int		ft_lstsize(t_list *lst);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_lstadd_back(t_list **lst, t_list *new);
-void	sa(t_list **lst);
-void	sb(t_list **lst);
-void	ss(t_list **lst_a, t_list **lst_b);
-void	pa(t_list **lst_a, t_list **lst_b);
-void	pb(t_list **lst_a, t_list **lst_b);
-void	ra(t_list **lst);
-void	rb(t_list **lst);
-void	rr(t_list **lst_a, t_list **lst_b);
-void	rra(t_list **lst);
-void	rrb(t_list **lst);
-void	rrr(t_list **lst_a, t_list **lst_b);
+void	sa(t_list **lst, int print);
+void	sb(t_list **lst, int print);
+void	ss(t_list **lst_a, t_list **lst_b, int print);
+void	pa(t_list **lst_a, t_list **lst_b, int print);
+void	pb(t_list **lst_a, t_list **lst_b, int print);
+void	ra(t_list **lst, int print);
+void	rb(t_list **lst, int print);
+void	rr(t_list **lst_a, t_list **lst_b, int print);
+void	rra(t_list **lst, int print);
+void	rrb(t_list **lst, int print);
+void	rrr(t_list **lst_a, t_list **lst_b, int print);
 char	**ft_split(char const *s, char c);
 void	init_stack_a(t_list **lst, char **argv);
 bool	stack_sorted(t_list *lst);

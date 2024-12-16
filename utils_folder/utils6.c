@@ -6,7 +6,7 @@
 /*   By: jimpa <jimpa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 18:39:22 by jimpa             #+#    #+#             */
-/*   Updated: 2024/12/12 19:22:13 by jimpa            ###   ########.fr       */
+/*   Updated: 2024/12/16 12:21:06 by jimpa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	sort_stacks(t_list **a, t_list **b)
 
 	len_a = ft_lstsize(*a);
 	if (len_a-- > 3 && !stack_sorted(*a))
-		pb(a, b);
+		pb(a, b, 1);
 	if (len_a-- > 3 && !stack_sorted(*a))
-		pb(a, b);
+		pb(a, b, 1);
 	while (len_a-- > 3 && !stack_sorted(*a))
 	{
 		init_nodes_a(*a, *b);

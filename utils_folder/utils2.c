@@ -6,7 +6,7 @@
 /*   By: jimpa <jimpa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 18:32:03 by jimpa             #+#    #+#             */
-/*   Updated: 2024/12/12 19:41:17 by jimpa            ###   ########.fr       */
+/*   Updated: 2024/12/16 12:18:34 by jimpa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	move_b_to_a(t_list **a, t_list **b)
 {
 	prep_for_push(a, (*b)->target_node, 'a');
-	pa(a, b);
+	pa(a, b, 1);
 }
 
 void	set_cheapest(t_list *lst)

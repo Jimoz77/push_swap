@@ -6,7 +6,7 @@
 /*   By: jimpa <jimpa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 18:40:38 by jimpa             #+#    #+#             */
-/*   Updated: 2024/12/12 19:26:30 by jimpa            ###   ########.fr       */
+/*   Updated: 2024/12/16 12:08:20 by jimpa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,27 +33,31 @@ void	reverse_rotate(t_list **lst)
 }
 // FONCTION INTERMEDIARE POUR WRITE A CHAQUE APPEL //
 
-void	sa(t_list **lst)
+void	sa(t_list **lst, int print)
 {
 	swap(lst);
-	ft_printf("sa\n");
+	if (print == 1)
+		ft_printf("sa\n");
 }
 
-void	sb(t_list **lst)
+void	sb(t_list **lst, int print)
 {
 	swap(lst);
-	ft_printf("sb\n");
+	if (print == 1)
+		ft_printf("sb\n");
 }
 
-void	ss(t_list **lst_a, t_list **lst_b)
+void	ss(t_list **lst_a, t_list **lst_b, int print)
 {
 	swap(lst_a);
 	swap(lst_b);
-	ft_printf("ss\n");
+	if (print == 1)
+		ft_printf("ss\n");
 }
 
-void	pa(t_list **lst_a, t_list **lst_b)
+void	pa(t_list **lst_a, t_list **lst_b, int print)
 {
 	push(lst_a, lst_b);
-	ft_printf("pa\n");
+	if (print == 1)
+		ft_printf("pa\n");
 }

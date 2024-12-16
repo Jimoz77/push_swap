@@ -6,7 +6,7 @@
 /*   By: jimpa <jimpa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 17:56:54 by jimpa             #+#    #+#             */
-/*   Updated: 2024/12/12 19:21:43 by jimpa            ###   ########.fr       */
+/*   Updated: 2024/12/16 12:18:38 by jimpa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,16 +57,16 @@ void	prep_for_push(t_list **lst, t_list *top_node, char lst_name)
 		if (lst_name == 'a')
 		{
 			if (top_node->above_median)
-				ra(lst);
+				ra(lst, 1);
 			else
-				rra(lst);
+				rra(lst, 1);
 		}
 		else if (lst_name == 'b')
 		{
 			if (top_node->above_median)
-				rb(lst);
+				rb(lst, 1);
 			else
-				rrb(lst);
+				rrb(lst, 1);
 		}
 	}
 }
@@ -96,5 +96,5 @@ void	move_a_to_b(t_list **a, t_list **b)
 		rev_rotate_both(a, b, cheapest_node);
 	prep_for_push(a, cheapest_node, 'a');
 	prep_for_push(b, cheapest_node->target_node, 'b');
-	pb(a, b);
+	pb(a, b, 1);
 }

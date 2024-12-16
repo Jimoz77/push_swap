@@ -6,7 +6,7 @@
 /*   By: jimpa <jimpa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 18:03:29 by jimpa             #+#    #+#             */
-/*   Updated: 2024/12/12 19:43:06 by jimpa            ###   ########.fr       */
+/*   Updated: 2024/12/16 12:22:59 by jimpa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	rev_rotate_both(t_list **a, t_list **b, t_list *cheapest_node)
 {
 	while (*b != cheapest_node->target_node && *a != cheapest_node)
-		rrr(a, b);
+		rrr(a, b, 1);
 	set_index(*a);
 	set_index(*b);
 }
@@ -23,7 +23,7 @@ void	rev_rotate_both(t_list **a, t_list **b, t_list *cheapest_node)
 void	rotate_both(t_list **a, t_list **b, t_list *cheapest_node)
 {
 	while (*b != cheapest_node->target_node && *a != cheapest_node)
-		rr(a, b);
+		rr(a, b, 1);
 	set_index(*a);
 	set_index(*b);
 }

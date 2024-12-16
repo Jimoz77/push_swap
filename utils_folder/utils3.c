@@ -6,7 +6,7 @@
 /*   By: jimpa <jimpa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 18:33:21 by jimpa             #+#    #+#             */
-/*   Updated: 2024/12/12 19:41:43 by jimpa            ###   ########.fr       */
+/*   Updated: 2024/12/16 12:18:23 by jimpa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ void	min_on_top(t_list **a)
 	while ((*a)->content != find_min(*a)->content)
 	{
 		if (find_min(*a)->above_median)
-			ra(a);
+			ra(a, 1);
 		else
-			rra(a);
+			rra(a, 1);
 	}
 }
 
@@ -64,9 +64,9 @@ void	sort_three(t_list **lst)
 
 	big_node = find_max(*lst);
 	if (big_node == *lst)
-		ra(lst);
+		ra(lst, 1);
 	else if ((*lst)->next == big_node)
-		rra(lst);
+		rra(lst, 1);
 	if ((*lst)->content > (*lst)->next->content)
-		sa(lst);
+		sa(lst, 1);
 }
