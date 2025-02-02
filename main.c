@@ -6,24 +6,50 @@
 /*   By: jimpa <jimpa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 17:46:53 by jimpa             #+#    #+#             */
-/*   Updated: 2024/12/16 15:43:08 by jimpa            ###   ########.fr       */
+/*   Updated: 2025/02/02 17:59:26 by jimpa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+void	free_split(char **split)
+{
+	int	i;
+
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
+}
+
+void	free_list(t_list *list)
+{
+	t_list	*temp;
+
+	while (list != NULL)
+	{
+		temp = list;
+		list = list->next;
+		free(temp);
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_list	*list_a;
 	t_list	*list_b;
+	char	**split;
 
 	list_a = NULL;
 	list_b = NULL;
 	if (argc == 1 || (argc == 2 && !argv[1][0]))
 		return (1);
 	else if (argc == 2)
-		argv = ft_split(argv[1], ' ');
-	init_stack_a(&list_a, argv);
+		split = ft_split(argv[1], ' ');
+	init_stack_a(&list_a, split);
 	if (!stack_sorted(list_a))
 	{
 		if (ft_lstsize(list_a) == 2)
@@ -33,24 +59,8 @@ int	main(int argc, char **argv)
 		else
 			sort_stacks(&list_a, &list_b);
 	}
+	free_list(list_a);
+	free_list(list_b);
+	free_split(split);
 	return (0);
 }
-
- /* t_list *temp_a = list_a;
-	t_list *temp_b = list_b;
-	while (temp_a != NULL || temp_b != NULL)
-	{
-		if (temp_a != NULL)
-		{
-			printf("list_a: %d ", temp_a->content);
-			temp_a = temp_a->next;
-		}
-		if (temp_b != NULL)
-		{
-			printf("list_b: %d", temp_b->content);
-			temp_b = temp_b->next;
-		}
-		printf("\n");
-	} 
-	printf("sorted = %d\n", stack_sorted(lis t_a));
- */

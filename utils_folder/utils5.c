@@ -6,7 +6,7 @@
 /*   By: jimpa <jimpa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 18:37:42 by jimpa             #+#    #+#             */
-/*   Updated: 2024/12/12 19:40:36 by jimpa            ###   ########.fr       */
+/*   Updated: 2025/02/02 17:57:02 by jimpa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,14 @@ t_list	*ft_lstnew(int content)
 	new_element = (t_list *)malloc(sizeof(t_list));
 	if (!new_element)
 		return (NULL);
-	new_element->content = (int)(long)content;
+	new_element->content = content;
+	new_element->index = 0;
+	new_element->push_cost = 0;
+	new_element->above_median = false;
+	new_element->cheapest = false;
+	new_element->target_node = NULL;
 	new_element->next = NULL;
+	new_element->prev = NULL;
 	return (new_element);
 }
 

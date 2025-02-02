@@ -6,7 +6,7 @@
 /*   By: jimpa <jimpa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 12:00:53 by jimpa             #+#    #+#             */
-/*   Updated: 2024/12/16 15:46:54 by jimpa            ###   ########.fr       */
+/*   Updated: 2025/02/02 18:05:54 by jimpa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,11 @@ void	do_instru(char *line, t_list **a, t_list **b)
 		rrr(a, b, 0);
 }
 
-
 int	main(int argc, char **argv)
 {
-	char	*line;
 	t_list	*list_a;
 	t_list	*list_b;
+	char	*line;
 
 	argc--;
 	line = "a";
@@ -69,14 +68,16 @@ int	main(int argc, char **argv)
 	argv = ft_split(argv[1], ' ');
 	init_stack_a(&list_a, argv);
 	free(argv);
-	while ((line = get_next_line(STDIN_FILENO)) != NULL)
+	line = get_next_line(STDIN_FILENO);
+	while (line != NULL)
 	{
 		do_instru(line, &list_a, &list_b);
 		free(line);
+		line = get_next_line(STDIN_FILENO);
 	}
 	if (stack_sorted(list_a) == 0)
 		ft_printf("KO\n");
 	else
 		ft_printf("OK\n");
-return (0);
+	return (0);
 }
