@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils5.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jimpa <jimpa@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jiparcer <jiparcer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 18:37:42 by jimpa             #+#    #+#             */
-/*   Updated: 2025/02/02 17:57:02 by jimpa            ###   ########.fr       */
+/*   Updated: 2025/02/03 15:42:23 by jiparcer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,9 @@ void	init_stack_a(t_list **lst, char **argv)
 		if (ft_atol(argv[i]) > INT_MAX || ft_atol(argv[i]) < INT_MIN
 			|| check_carac(argv) == 1 || check_doublon(argv) == 1)
 		{
-			write(STDERR_FILENO, "Error\n", 6);
-			return ;
+			write(2, "Error\n", 6);
+			free_list(*lst);
+			exit(1);
 		}
 		ft_lstadd_back(lst, ft_lstnew(ft_atol(argv[i])));
 		i++;

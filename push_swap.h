@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jimpa <jimpa@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jiparcer <jiparcer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 18:03:44 by jimpa             #+#    #+#             */
-/*   Updated: 2024/12/16 12:16:25 by jimpa            ###   ########.fr       */
+/*   Updated: 2025/02/03 15:41:55 by jiparcer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,7 @@ void	push(t_list **lst_b, t_list **lst_a);
 void	rotate(t_list **lst);
 void	reverse_rotate(t_list **lst);
 int		ft_printf(const char *str, ...);
+void	free_split(char **split);
+void	free_list(t_list *list);
 
 #endif
